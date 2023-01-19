@@ -298,17 +298,20 @@ void radix_sort(int n, int v[100])
 
 
 
-void cautare_secventiala(){
+void cautare_secventiala()
+{
     float y;
     int n;
-    cout<<"introduceti numarul de valori "; cin>>n;
+    cout<<"introduceti numarul de valori ";
+    cin>>n;
     cout<<"introduceti valorile vectorului "<<endl;
-    cout<<"introduceti valoarea cautata ";cin>>y;
     float x[n];
-    for(int i=0;i<n;i++)
+    for(int i=0; i<n; i++)
         cin>>x[i];
+    cout<<"introduceti valoarea cautata ";
+    cin>>y;
     int c=0;
-    for(int i=0;i<n;i++)
+    for(int i=0; i<n; i++)
         if(x[i]==y)
             c++;
     if(c==0)
@@ -956,6 +959,36 @@ numar *adaugare_in_stiva(numar *cap, int a)
     cap=c; // noul capat al stivei
     return cap;
 }
+numar* interclasare(numar* lista1, numar* lista2) {
+    // crearea capatului listei rezultate
+    numar* cap = new numar;
+    numar* u = cap; // ultimul element din lista rezultata
+    numar* c1 = lista1; // elementul curent din lista 1
+    numar* c2 = lista2; // elementul curent din lista 2
+
+    // compararea valorilor din cele doua liste si adaugarea in lista rezultata
+    while (c1 != NULL && c2 != NULL) {
+        if (c1->v < c2->v) {
+            u->urm = c1;
+            u = c1;
+            c1 = c1->urm;
+        } else {
+            u->urm = c2;
+            u = c2;
+            c2 = c2->urm;
+        }
+    }
+
+    // adaugarea elementelor ramase din lista care nu a fost parcursa complet
+    if (c1 != NULL) {
+        u->urm = c1;
+    } else {
+        u->urm = c2;
+    }
+
+    return cap->urm;
+}
+
 
 // FUNCTII PENTRU COZI
 
@@ -1369,7 +1402,7 @@ int main()
                 break;
                 }
                 case 9:{
-
+                    cautare_secventiala();
                 break;}
 
                 case 10:{
@@ -1577,10 +1610,29 @@ int main()
                     break;
                 }
               case 6: // interclasarea a doua liste ordonate
+{
+     //interclasare
+                    numar *l1;
+                    l1=creare_lista_ordonata();
+                    cout<<"Lista creata ordonat este: ";
+                    parcurgere_lista(l1);
+                    cout<<endl;
+                    numar *l2;
+                    l2=creare_lista_ordonata();
+                    cout<<"Lista creata ordonat este: ";
+                    parcurgere_lista(l2);
+                    cout<<endl;
 
+                    numar *l3;
+                    l3=interclasare(l1,l2);
+                    cout<<"Lista creata ordonat este: ";
+                    parcurgere_lista(l3);
+                    cout<<endl;
+
+}
                 break;
 
-              case 7: // adunarea a doua polinoame
+              case 7:{ // adunarea a doua polinoame
                   monom *p1, *p2, *p;
                   cout<<"citeste primul polinom p1:"<<endl;
                   p1=citeste_polinom();
@@ -1595,7 +1647,7 @@ int main()
                   p=aduna_polinoame(p1,p2);
                   cout<<endl<<" suma = ";
                   afisare_polinom(p);
-                  cout<<endl;
+                  cout<<endl;}
                 break;
 
 
