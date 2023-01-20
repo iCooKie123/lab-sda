@@ -1406,7 +1406,7 @@ int main()
                 break;}
 
                 case 10:{
-                    int y;
+                     int y;
                     cout<<"introduceti numarul de valori "; cin>>n;
                     cout<<"introduceti valorile vectorului"<<endl;
                     float v[100];
@@ -1416,7 +1416,7 @@ int main()
                         cin>>v[i];
                     cout<<"Introduceti valoarea cautata ";cin>>y;
                     merge_sort(s,d,v);
-                    if(y<x[0]||y>x[n-1])
+                    if(y<v[0]||y>v[n-1])
                         cout<<" Valoarea cautata nu se afla in sir";
                     else
                         cautare_binara(s,d,v,y);
